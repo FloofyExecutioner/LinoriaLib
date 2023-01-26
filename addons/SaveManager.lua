@@ -119,7 +119,7 @@ local SaveManager = {} do
 		for _, option in next, decoded.objects do
 			if self.Parser[option.type] then
 				print('PARSING OBJECT WITH TYPE: '..option.type)
-				self.Parser[option.type].Load(option.idx, option)
+				task.spawn(function() self.Parser[option.type].Load(option.idx, option) end) -- bug fix?
 				warn('parsed '..tostring(_))
 			end
 		end
