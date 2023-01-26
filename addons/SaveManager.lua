@@ -118,6 +118,7 @@ local SaveManager = {} do
 		warn('parsing '..tostring(#decoded.objects)..' objects')
 		for _, option in next, decoded.objects do
 			if self.Parser[option.type] then
+				print('PARSING OBJECT WITH TYPE: '..option.type)
 				self.Parser[option.type].Load(option.idx, option)
 				warn('parsed '..tostring(_))
 			end
