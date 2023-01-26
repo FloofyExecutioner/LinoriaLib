@@ -110,13 +110,16 @@ local SaveManager = {} do
 	function SaveManager:Load(name)
 		local file = self.Folder .. '/settings/' .. name .. '.json'
 		if not isfile(file) then return false, 'invalid file' end
-
-		local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
+		local loaded = readfile(file)
+		local decoded = nil
+		local success, err = pcall(function() decoded = httpService:JSONDecode(loaded) end)
+		print('hello bing bong decoded')
 		if not success then return false, 'decode error' end
-
+		warn('parsing '..tostring(#decoded.objects)..' objects')
 		for _, option in next, decoded.objects do
 			if self.Parser[option.type] then
 				self.Parser[option.type].Load(option.idx, option)
+				warn('parsed '..tostring(_))
 			end
 		end
 
@@ -229,7 +232,7 @@ local SaveManager = {} do
 				if not success then
 					return self.Library:Notify('Failed to load config: ' .. err)
 				end
-
+				warn('e')
 				self.Library:Notify(string.format('Loaded config %q', name))
 			end
 		})
