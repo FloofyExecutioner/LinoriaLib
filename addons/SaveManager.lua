@@ -113,14 +113,10 @@ local SaveManager = {} do
 		local loaded = readfile(file)
 		local decoded = nil
 		local success, err = pcall(function() decoded = httpService:JSONDecode(loaded) end)
-		print('hello bing bong decoded')
 		if not success then return false, 'decode error' end
-		warn('parsing '..tostring(#decoded.objects)..' objects')
 		for _, option in next, decoded.objects do
 			if self.Parser[option.type] then
-				print('PARSING OBJECT WITH TYPE: '..option.type)
 				task.spawn(function() self.Parser[option.type].Load(option.idx, option) end) -- bug fix?
-				warn('parsed '..tostring(_))
 			end
 		end
 
