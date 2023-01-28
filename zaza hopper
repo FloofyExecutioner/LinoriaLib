@@ -2,7 +2,7 @@
 local NOW = tick()
 game:GetService('GuiService').ErrorMessageChanged:Connect(function()
     if tick() - NOW < 10 then
-      syn.queue_on_teleport('loadstring(game:HttpGet('uhh raw.github url for this kekekkekeekke'))()')
+      syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/FloofyExecutioner/LinoriaLib/main/zaza%20hopper'))()")
       game:GetService('TeleportService"):Teleport(game.PlaceId, game:GetService('Players').LocalPlayer)
     end
 end)
