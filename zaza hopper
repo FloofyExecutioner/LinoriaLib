@@ -1,0 +1,8 @@
+-- zaza server hopper 🔥🔥🔥
+local NOW = tick()
+game:GetService('GuiService').ErrorMessageChanged:Connect(function()
+    if tick() - NOW < 10 then
+      syn.queue_on_teleport('loadstring(game:HttpGet('uhh raw.github url for this kekekkekeekke'))()')
+      game:GetService('TeleportService"):Teleport(game.PlaceId, game:GetService('Players').LocalPlayer)
+    end
+end)
