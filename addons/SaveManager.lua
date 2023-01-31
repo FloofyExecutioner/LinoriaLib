@@ -229,7 +229,6 @@ local SaveManager = {} do
 				if not success then
 					return self.Library:Notify('Failed to load config: ' .. err)
 				end
-				warn('e')
 				self.Library:Notify(string.format('Loaded config %q', name))
 			end
 		})
