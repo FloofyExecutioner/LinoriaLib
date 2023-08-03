@@ -233,15 +233,22 @@ local SaveManager = {} do
 			end
 		})
 
+		local lastOverwriteConfirmTick = 0
+
 		section:AddButton({ Text = 'Overwrite config', Func = function()
-			local name = Options.SaveManager_ConfigList.Value
-
-			local success, err = self:Save(name)
-			if not success then
-				return self.Library:Notify('Failed to overwrite config: ' .. err)
+			if (tick() - lastOverwriteConfirmTick) <= 0.5 then
+				local name = Options.SaveManager_ConfigList.Value
+	
+				local success, err = self:Save(name)
+				if not success then
+					return self.Library:Notify('Failed to overwrite config: ' .. err)
+				end
+	
+				self.Library:Notify(string.format('Overwrote config %q', name))
+			else
+				self.Library:Notify(string.format('Click again to confirm you want to overwrite config %q', name))
+				lastOverwriteConfirmTick = tick()
 			end
-
-			self.Library:Notify(string.format('Overwrote config %q', name))
 		end })
 		
 		section:AddButton({ Text = 'Autoload config', Func = function()
