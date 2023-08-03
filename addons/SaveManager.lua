@@ -236,9 +236,8 @@ local SaveManager = {} do
 		local lastOverwriteConfirmTick = 0
 
 		section:AddButton({ Text = 'Overwrite config', Func = function()
+			local name = Options.SaveManager_ConfigList.Value
 			if (tick() - lastOverwriteConfirmTick) <= 0.5 then
-				local name = Options.SaveManager_ConfigList.Value
-	
 				local success, err = self:Save(name)
 				if not success then
 					return self.Library:Notify('Failed to overwrite config: ' .. err)
