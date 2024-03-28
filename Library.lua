@@ -2794,26 +2794,18 @@ function Library:CreateWindow(...)
             Parent = TabContainer;
         });
 
-        local LeftSide = Library:Create('ScrollingFrame', {
+        local LeftSide = Library:Create('Frame', {
             BackgroundTransparency = 1;
             Position = UDim2.new(0, 8, 0, 8);
             Size = UDim2.new(0.5, -12, 0, 507);
             ZIndex = 2;
-            AutomaticCanvasSize = Enum.AutomaticSize.Y;
-            ScrollBarThickness = 1;
-            BorderSizePixel = 0;
-            ScrollBarImageTransparency = 1;
             Parent = TabFrame;
         });
 
-        local RightSide = Library:Create('ScrollingFrame', {
+        local RightSide = Library:Create('Frame', {
             BackgroundTransparency = 1;
             Position = UDim2.new(0.5, 4, 0, 8);
             Size = UDim2.new(0.5, -12, 0, 507);
-            AutomaticCanvasSize = Enum.AutomaticSize.Y;
-            ScrollBarThickness = 1;
-            BorderSizePixel = 0;
-            ScrollBarImageTransparency = 1;
             ZIndex = 2;
             Parent = TabFrame;
         });
@@ -3163,6 +3155,28 @@ function Library:CreateWindow(...)
     function Library.Toggle()
         Outer.Visible = not Outer.Visible;
         ModalElement.Modal = Outer.Visible;
+
+        local oIcon = Mouse.Icon;
+        local State = InputService.MouseIconEnabled;
+
+        local Cursor = Drawing.new('Triangle');
+        Cursor.Thickness = 1;
+        Cursor.Filled = true;
+
+        while Outer.Visible and ScreenGui.Parent do
+            local mPos = InputService:GetMouseLocation()
+
+            Cursor.Color = Library.AccentColor;
+            Cursor.PointA = Vector2.new(mPos.X, mPos.Y);
+            Cursor.PointB = Vector2.new(mPos.X, mPos.Y) + Vector2.new(6, 14);
+            Cursor.PointC = Vector2.new(mPos.X, mPos.Y) + Vector2.new(-6, 14);
+
+            Cursor.Visible = not InputService.MouseIconEnabled;
+
+            RenderStepped:Wait();
+        end;
+
+        Cursor:Remove();
     end
 
     Library:GiveSignal(InputService.InputBegan:Connect(function(Input, Processed)
