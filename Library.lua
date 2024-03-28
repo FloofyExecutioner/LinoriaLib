@@ -2801,6 +2801,8 @@ function Library:CreateWindow(...)
             ZIndex = 2;
             AutomaticCanvasSize = Enum.AutomaticSize.Y;
             ScrollBarThickness = 1;
+            BorderSizePixel = 0;
+            ScrollBarImageTransparency = 1;
             Parent = TabFrame;
         });
 
@@ -2810,6 +2812,8 @@ function Library:CreateWindow(...)
             Size = UDim2.new(0.5, -12, 0, 507);
             AutomaticCanvasSize = Enum.AutomaticSize.Y;
             ScrollBarThickness = 1;
+            BorderSizePixel = 0;
+            ScrollBarImageTransparency = 1;
             ZIndex = 2;
             Parent = TabFrame;
         });
