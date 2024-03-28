@@ -2797,7 +2797,7 @@ function Library:CreateWindow(...)
         local LeftSide = Library:Create('ScrollingFrame', {
             BackgroundTransparency = 1;
             Position = UDim2.new(0, 8, 0, 8);
-            Size = UDim2.new(0.5, -10, 0, 507);
+            Size = UDim2.new(0.5, 0, 0, 507);
             ZIndex = 2;
             AutomaticCanvasSize = Enum.AutomaticSize.Y;
             ScrollBarThickness = 1;
@@ -2809,7 +2809,7 @@ function Library:CreateWindow(...)
         local RightSide = Library:Create('ScrollingFrame', {
             BackgroundTransparency = 1;
             Position = UDim2.new(0.5, 4, 0, 8);
-            Size = UDim2.new(0.5, -10, 0, 507);
+            Size = UDim2.new(0.5, 0, 0, 507);
             AutomaticCanvasSize = Enum.AutomaticSize.Y;
             ScrollBarThickness = 1;
             BorderSizePixel = 0;
